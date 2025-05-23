@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --primary: #f7f8f9;
+  --primary-text: #1d2226;
+
+  --primary-color: #6c25ff;
+  --primary-btn-hover: #411699;
+
+  --secondary-color: #6c25ff4b;
+  --secondary-btn-hover: #16083493;
+
+  --font-weight-lightbold: 600;
+  --input-border: #cbcbcb;
+}
+
+@utility font-lightbold {
+  font-weight: var(--font-weight-lightbold);
+}
+
+@utility bg-primaryBg {
+  background-color: var(--primary);
+}
+
+@utility bg-primaryBtn {
+  background-color: var(--primary-color);
+  &:hover {
+    background-color: var(--primary-btn-hover);
+  }
+}
+
+@utility bg-secondaryBtn {
+  background-color: var(--secondary-color);
+  &:hover {
+    background-color: var(--secondary-btn-hover);
+  }
+}
+@utility text-primary {
+  color: var(--primary-text);
+}
+
+@utility border-grayBorder {
+  border-color: var(--input-border);
+  &:focus {
+    border-color: var(--primary-color);
+    outline: 0.5px solid var(--primary-color);
+  }
+}
+
+@utility text-2.5xl {
+  font-size: 1.75rem; /* 28px */
+  line-height: 2.25rem; /* 36px */
+}
+
+@layer components {
+  .input-wrapper::before {
+    content: var(--input-type);
+    position: absolute;
+    text-transform: capitalize;
+    transform: translateY(-60%);
+    padding: 0 0.25rem;
+    left: 3%;
+    font-size: 13px;
+    background-color: var(--primary);
+    width: 90px;
+    color: var(--primary-color);
+    height: fit-content;
+  }
+
+  .input {
+    @apply w-full px-3.5 pt-3 pb-2 text-sm text-[#1D2226] border rounded-md appearance-none focus:outline-none focus:ring-[0.5px]
+        border-grayBorder focus:ring-(--primary-color) focus:border-(--primary-color);
+  }
+
+  .primary-btn {
+    @apply bg-primaryBtn transition-colors duration-200 text-white rounded-md px-4 py-2 font-lightbold text-center cursor-pointer;
+  }
+
+  .secondary-btn {
+    @apply bg-secondaryBtn text-primary transition-colors duration-200 px-4 py-2 rounded-md font-lightbold text-center cursor-pointer;
+  }
+}
